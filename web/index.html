@@ -16,7 +16,13 @@
       </ul>
     </div>
   </nav>
-
+ <nav>
+    <div class="nav-wrapper grey lighten-5 instruments">
+      <ul class="right hide-on-med-and-down">
+        <li><a href="" ng-click="createTicker()"><i class="material-icons fa fa-plus "></i></a></li>
+      </ul>
+    </div>
+  </nav>
    <table>
         <thead>
           <tr>
@@ -28,14 +34,79 @@
               <th><i>Purchase</i><br><i>№ Contracts</i></th>
               <th><i>Sum</i><br><i>Investment</i></th>
               <th><i>Sum</i><br><i>Amount</i></th>
+              <th>Optimistic price</th>
+              <th><i>Sum</i><br><i>Profit</i></th>
+              <th><i>Procent</i><br><i>Profit %</i></th>
+              <th>Realistic price</th>
+              <th><i>Sum</i><br><i>Profit</i></th>
+              <th><i>Procent</i><br><i>Profit %</i></th>
+              <th>Stop Loss Price</th>
+              <th><i>Sum</i><br><i>Profit</i></th>
+              <th><i>Procent</i><br><i>Profit %</i></th>
+              <th>Ma21</th>
+              <th>MA200</th>
+              <th>Trend</th>
+              <th>MACD</th>
+              <th>RSI</th></div>
+              <th>Conclusion<th>
+              <th>Comments</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr>
-            <td>Alvin</td>
-            <td>Eclair</td>
-            <td>$0.87</td>
+          <tr ng-repeat="ticker in tickers" ng-hide="ticker.edit">
+            <td><a href=""><i class="material-icons fa fa-wrench" ng-click="ticker.edit=true"></i></a>
+            <a href=""><i class="material-icons fa fa-save"></i></a>{{ticker.ticker}}</td>
+            <td>{{ticker.name_ticker}}</td>
+            <td>{{ticker.currency}}</td>
+            <td>{{ticker.trade}}</td>
+            <td>{{ticker.last_price_cur}}</td>
+            <td>{{ticker.purchase_contract}}</td>
+            <td>{{ticker.purchase_investment}}</td>
+            <td>{{ticker.purchase_amount}}</td>
+            <td>{{ticker.optimistic_price_cur}}</td>
+            <td>{{ticker.optimistic_profit}}</td>
+            <td>{{ticker.optimistic_profit_percent}}</td>
+            <td>{{ticker.realistic_price_cur}}</td>
+            <td>{{ticker.realistic_profit}}</td>
+            <td>{{ticker.realistic_profit_percent}}</td>
+            <td>{{ticker.stop_price_cur}}</td>
+            <td>{{ticker.stop_profit}}</td>
+            <td>{{ticker.stop_profit_percent}}</td>
+            <td>{{ticker.ma21}}</td>
+            <td>{{ticker.ma200}}</td>
+            <td>{{ticker.trend}}</td>
+            <td>{{ticker.macd}}</td>
+            <td>{{ticker.rci}}</td>
+            <td></td>
+            <td></td>
+            </tr>
+            <tr ng-repeat="ticker in tickers" ng-show="ticker.edit">
+            <td>
+            <a href=""><i class="material-icons fa fa-save" ng-click="save(ticker)"></i></a><input type="text" ng-model="ticker.ticker"/></td>
+            <td><input type="text" ng-model="ticker.name_ticker"/></td>
+            <td><input type="text" ng-model="ticker.currency"/></td>
+            <td><input type="text" ng-model="ticker.trade"/></td>
+            <td><input type="text" ng-model="ticker.last_price_cur"/></td>
+            <td><input type="text" ng-model="ticker.purchase_contract"/></td>
+            <td><input type="text" ng-model="ticker.purchase_investment"/></td>
+            <td><input type="text" ng-model="ticker.purchase_amount"/></td>
+            <td><input type="text" ng-model="ticker.optimistic_price_cur"/></td>
+            <td><input type="text" ng-model="ticker.optimistic_profit"/></td>
+            <td><input type="text" ng-model="ticker.optimistic_profit_percent"/></td>
+            <td><input type="text" ng-model="ticker.realistic_price_cur"/></td>
+            <td><input type="text" ng-model="ticker.realistic_profit"/></td>
+            <td><input type="text" ng-model="ticker.realistic_profit_percent"/></td>
+            <td><input type="text" ng-model="ticker.stop_price_cur"/></td>
+            <td><input type="text" ng-model="ticker.stop_profit"/></td>
+            <td><input type="text" ng-model="ticker.stop_profit_percent"/></td>
+            <td><input type="text" ng-model="ticker.ma21"/></td>
+            <td><input type="text" ng-model="ticker.ma200"/></td>
+            <td><input type="text" ng-model="ticker.trend"/></td>
+            <td><input type="text" ng-model="ticker.macd"/></td>
+            <td><input type="text" ng-model="ticker.rci"/></td>
+            <td></td>
+            <td></td>
           </tr>
         </tbody>
       </table>
@@ -43,6 +114,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="vendor/materialize.min.js"></script>	
 <script src="/vendor/angular.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/vendor/angular-resource.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="/scripts/watchlistController.js" type="text/javascript"></script>	
 </body>
 </html>
